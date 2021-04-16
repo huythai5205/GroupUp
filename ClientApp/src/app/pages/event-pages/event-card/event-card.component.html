@@ -1,0 +1,26 @@
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <br>
+      <h3>{{event.name}}</h3>
+      <br>
+      <h4><u>Date of event:</u></h4>
+      <p>{{event.dateOfEvent | date}}</p>
+      <h4><u>Time:</u></h4>
+      <p>{{event.startTime}} - {{event.endTime}}</p>
+      <h4><u>Users Participating:</u></h4>
+      <p>{{event.numOfParticipants}}/{{event.spotsAvailable}}</p>
+
+      <h4><u>Location:</u></h4>
+      <p> {{event.location.street}} {{event.location.city}} {{event.location.state}} {{event.location.country}}
+        {{event.location.zipCode}}
+      </p>
+    </div>
+    <div class="flip-card-back">
+      <br><br>
+      <h3><u>Description:</u></h3>
+      <p class="description-text">{{event.description}}</p>
+      <a mat-raised-button color='primary' routerLink='/event-detail/{{event.id}}'>More details</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<mat-card>
+  <form [formGroup]='editEventForm' name="editEventForm.valid && saveEvent()">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{event?.id ? 'Edit Event' : 'Create New Event'}}</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <GU-input id="event-name" [formControl]="editEventForm.controls['name']" [label]="'Name'" [type]="'text'">
+      </GU-input>
+
+      <div id="location-input-area">
+        <GU-google-place (setAddress)="getAddress($event)">
+        </GU-google-place>
+        <mat-error *ngIf="addressError">Please enter an establishment's name or address</mat-error>
+      </div>
+
+      <div *ngIf="event?.id">
+        <p>If you want to change the address, please type in new address above. </p>
+        <strong>Location: </strong>{{event.location.street}} {{event.location.city}} {{event.location.state}}
+      </div>
+
+      <mat-form-field id="description-area">
+        <mat-label>Description</mat-label>
+        <textarea id="description-input" matInput [formControl]="editEventForm.controls['description']"></textarea>
+        <mat-error>Please describe the event</mat-error>
+      </mat-form-field>
+
+      <GU-input [formControl]="editEventForm.controls['spotsAvailable']" [label]="'Available Spots'" [type]="'number'">
+      </GU-input>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date of Event</mat-label>
+        <input matInput [formControl]="editEventForm.controls['dateOfEvent']" [min]="todayDate"
+          [matDatepicker]="dateOfEventPicker">
+        <mat-datepicker-toggle matSuffix [for]="dateOfEventPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfEventPicker></mat-datepicker>
+        <mat-error>Please enter a date after today's date</mat-error>
+      </mat-form-field>
+
+      <GU-input [formControl]="editEventForm.controls['startTime']" [label]="'Start Time'" [type]="'time'">
+      </GU-input>
+
+      <GU-input [formControl]="editEventForm.controls['endTime']" [label]="'End Time'" [type]="'time'">
+      </GU-input>
+
+    </mat-card-content>
+  </form>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="!editEventForm.valid" (click)="saveEvent()">Save
+    </button>
+    <button mat-raised-button color="warn" *ngIf="event?.id" (click)="deleteEvent(event.id)" type="button">Delete
+    </button>
+    <a mat-raised-button color="accent" (click)="location.back()">Cancel</a>
+  </mat-card-actions>
+  <mat-card-footer>
+
+  </mat-card-footer>
+
+</mat-card>

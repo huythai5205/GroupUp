@@ -1,0 +1,13 @@
+<mat-form-field>
+  <input matInput placeholder={{label}} type={{type}} [formControl]="ngControl.control">
+  <mat-error *ngIf="ngControl.control.errors?.required">Please enter a {{label}}</mat-error>
+  <mat-error *ngIf="ngControl.control.errors?.email">Please enter a valid {{label}}</mat-error>
+  <mat-error *ngIf="ngControl.control.errors?.isMatching">{{label}} doesn't match</mat-error>
+  <mat-error *ngIf="ngControl.control.errors?.isTimeValid">{{label}} must be after Start Time</mat-error>
+  <mat-error *ngIf="ngControl.control.errors?.min">{{label}} need to be 3 or greater</mat-error>
+  <mat-error *ngIf="ngControl.control.errors?.pattern">
+    Password needs at least 1 uppercase, 1
+    lowercase, 1
+    number and 1 special character
+  </mat-error>
+</mat-form-field>

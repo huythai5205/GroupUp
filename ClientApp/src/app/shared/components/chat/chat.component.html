@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-content #scrollMe style="overflow: scroll; height: 535px;" [scrollTop]="scrollMe.scrollHeight">
+    <div *ngIf="(memberMessageService.messageThread$ | async)?.length === 0">
+      No messages yet... say hi by using the message box below
+    </div>
+
+    <ul *ngIf="(memberMessageService.messageThread$ | async).length > 0" class="chat">
+      <li *ngFor="let message of (memberMessageService.messageThread$ | async)">
+        <div>
+          <span class="chat-img float-right">
+            <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
+              alt="{{message.senderId}}">
+          </span>
+          <div class="chat-body">
+            <div class="header">
+              <small class="text-muted">
+                <span class="fa fa-clock-o">{{message.messageSent | date}}</span>
+                <span class="text-danger" *ngIf="!message.dateRead 
+                                    && message.senderId !== recipientId">
+                  (unread)
+                </span>
+                <span class="text-success" *ngIf="message.dateRead 
+                                    && message.senderID !== recipientId">
+                  (read {{message.dateRead | date}})
+                </span>
+              </small>
+            </div>
+            <p>{{message.content}}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <form #chatForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+      <div class="input-group">
+        <input name="messageContent" required [(ngModel)]="messageContent" type="text" class="form-control input-sm"
+          placeholder="Send a private message">
+        <div class="input-group-append">
+          <button [disabled]="!chatForm.valid" mat-button color="primary" type="submit">Send
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,15 @@
+mat-card{
+  text-align: center;
+}
+
+mat-card::ng-deep.mat-card-header-text {
+  width: 100%;
+}
+
+agm-map {
+  height: 300px;
+}
+
+p{
+  margin: 10px;
+}

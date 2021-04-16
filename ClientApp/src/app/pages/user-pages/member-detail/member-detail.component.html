@@ -1,0 +1,30 @@
+<div *ngIf="member" class="member-container">
+
+  <mat-card>
+    <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.firstName}}" class="card-img-top img-thumbnail">
+    <mat-card-content>
+      <div class="mb-2" *ngIf="(presence.onlineUsers$ | async).includes(member.id)">
+        <i class="fa fa-user-circle text-success"></i> Online now
+      </div>
+      <p><strong>Name: </strong>{{member.firstName}} {{member.lastName}}</p>
+      <p><strong>Age: </strong>{{member.dob | date}}</p>
+      <p><strong>Gender: </strong>{{member.gender}}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-tab-group #memberTabs (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Events Attending">
+      <h3>
+        <strong>Created Events</strong>
+      </h3>
+      <GU-event-table [events]="member.eventsCreated" [editDetail]="'detail'"></GU-event-table>
+      <h3>
+        <strong>Participating Events</strong>
+      </h3>
+      <GU-event-table [events]="member.eventsParticipating" [editDetail]="'detail'"></GU-event-table>
+    </mat-tab>
+    <mat-tab label="Messages">
+      <GU-chat [recipientId]="member.id" [type]="'member'"></GU-chat>
+    </mat-tab>
+  </mat-tab-group>
+</div>

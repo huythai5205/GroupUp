@@ -1,0 +1,23 @@
+
+table {
+  width: 100%;
+}
+
+table td{
+  cursor: pointer;
+}
+
+.main-events-container{
+  display: flex;
+}
+
+.events-container {
+  width: 45%;
+  margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .main-events-container{
+    display: block;
+  }
+}

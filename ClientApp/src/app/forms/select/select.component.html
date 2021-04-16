@@ -1,0 +1,8 @@
+<mat-form-field>
+    <mat-select matNativeControl placeholder={{label}} [formControl]="ngControl.control">
+      <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="ngControl.control.errors?.required">Please select a {{label}}>
+      Required
+    </mat-error>
+</mat-form-field>

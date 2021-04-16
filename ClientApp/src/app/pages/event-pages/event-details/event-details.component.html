@@ -1,0 +1,42 @@
+<div *ngIf="event">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{event.name}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{event.description}}</p>
+      <p><strong>Location:</strong>
+        {{event.location.street}} {{event.location.city}} {{event.location.state}} {{event.location.country}}
+        {{event.location.zipCode}}
+      </p>
+      <p><strong>Users Participating: </strong>{{event.numOfParticipants}}/{{event.spotsAvailable}}</p>
+      <p><strong>Date:</strong>{{event.dateOfEvent | date}} </p>
+      <p><strong>Time:</strong>{{event.startTime}} to {{event.endTime}}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addEvent()"
+        *ngIf="!isParticipating && event.numOfParticipants < event.spotsAvailable">add</button>
+      <p *ngIf="event.numOfParticipants >= event.spotsAvailable">Full</p>
+      <p *ngIf="isParticipating">You're in this event</p>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-tab-group #memberTabs (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Map">
+      <agm-map [latitude]="event.location.latitude" [longitude]="event.location.longitude" [mapTypeId]="mapType"
+        [zoom]="15" [zoomControl]="true">
+        <agm-marker [latitude]="event.location.latitude" [longitude]="event.location.longitude" [label]="event.name">
+        </agm-marker>
+      </agm-map>
+    </mat-tab>
+    <mat-tab label="Users Attending">
+      <GU-member-table [members]="event.usersParticipating"></GU-member-table>
+    </mat-tab>
+    <mat-tab label="Messages">
+      <GU-event-chat [recipientId]="event.id" [type]="'event'"></GU-event-chat>
+    </mat-tab>
+    <mat-tab label="Photos"> photos </mat-tab>
+  </mat-tab-group>
+</div>

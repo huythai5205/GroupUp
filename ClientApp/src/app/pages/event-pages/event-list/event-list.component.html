@@ -1,0 +1,47 @@
+<div class="event-list-container">
+  <h3>Search events by: </h3>
+
+  <div class="search-container">
+    <form [formGroup]="locationSearchForm">
+      <GU-select [formControl]="locationSearchForm.controls['distanceWithin']" [label]="'Miles within'"
+        [options]="[10, 25, 50, 75]"></GU-select>
+
+      <button mat-raised-button color="primary" [disabled]="!locationSearchForm.valid"
+        (click)="getEventsByLocation()">Search within location</button>
+      <mat-error *ngIf="isGeolocationError">Please enable location on your browser</mat-error>
+    </form>
+
+    <form [formGroup]="citySearchForm">
+      <GU-select [formControl]="citySearchForm.controls['state']" [label]="'State'" [options]="states"></GU-select>
+
+      <GU-select [formControl]="citySearchForm.controls['city']" [label]="'City'" [options]="cities"></GU-select>
+
+      <button [disabled]="!citySearchForm.valid" (click)="getEventsByCity()">Search by city</button>
+    </form>
+
+    <form [formGroup]="orderByForm">
+      <mat-select [formControl]="orderByForm.controls['orderBy']" [(value)]="userParams.orderBy"
+        (selectionChange)="loadEvents()">
+        <mat-option value="Created">Recent Created Events</mat-option>
+        <mat-option value="DateOfEvent">Earliest Events</mat-option>
+      </mat-select>
+    </form>
+  </div>
+
+  <agm-map [latitude]="userParams.latitude" [longitude]="userParams.longitude" [mapTypeId]="mapType" [fitBounds]="true">
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [agmFitBounds]="true">
+    </agm-marker>
+  </agm-map>
+
+  <mat-grid-list cols="4" rowHeight="330px">
+    <mat-grid-tile *ngFor="let event of events">
+      <GU-event-card [event]="event"></GU-event-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+  <mat-paginator *ngIf="pagination" [length]="pagination.totalItems" [pageSize]="pagination.itemsPerPage"
+    (page)="changePage($event)" [pageSizeOptions]="pageSizeOptions">
+  </mat-paginator>
+
+</div>

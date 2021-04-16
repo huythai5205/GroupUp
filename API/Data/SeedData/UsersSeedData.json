@@ -1,0 +1,65 @@
+[
+  {
+    "Email": "kennyt995@gmail.com",
+    "UserName": "kennyt995@gmail.com",
+    "Gender": "male",
+    "FirstName": "Huy2",
+    "Password": "Password1!",
+    "LastName": "Thai2",
+    "DOB": "1994-03-16"
+  },
+  {
+    "Email": "kennythai85@gmail.com",
+    "UserName": "kennythai85@gmail.com",
+    "Gender": "male",
+    "FirstName": "Huy",
+    "Password": "Password1!",
+    "LastName": "Thai",
+    "DOB": "1994-03-16"
+  },
+  {
+    "Email": "letacervantes@acruex.com",
+    "UserName": "letacervantes@acruex.com",
+    "Gender": "male",
+    "FirstName": "Hull",
+    "Password": "Password1!",
+    "LastName": "Medina",
+    "DOB": "1994-03-16"
+  },
+  {
+    "Email": "hullmedina@acruex.com",
+    "UserName": "hullmedina@acruex.com",
+    "Gender": "male",
+    "FirstName": "Leonard",
+    "Password": "Password1!",
+    "LastName": "Solomon",
+    "DOB": "1999-11-05"
+  },
+  {
+    "Email": "leonardsolomon@acruex.com",
+    "UserName": "leonardsolomon@acruex.com",
+    "Gender": "male",
+    "FirstName": "Beasley",
+    "Password": "Password1!",
+    "LastName": "Grimes",
+    "DOB": "1967-12-25"
+  },
+  {
+    "Email": "beasleygrimes@acruex.com",
+    "UserName": "beasleygrimes@acruex.com",
+    "Gender": "male",
+    "FirstName": "Spencer",
+    "Password": "Password1!",
+    "LastName": "Harmon",
+    "DOB": "1953-06-07"
+  },
+  {
+    "Email": "spencerharmon@acruex.com",
+    "UserName": "spencerharmon@acruex.com",
+    "Gender": "male",
+    "FirstName": "Perez",
+    "Password": "Password1!",
+    "LastName": "Carey",
+    "DOB": "1991-08-04"
+  }
+]

@@ -1,0 +1,60 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+
+      <ng-container *ngIf="(accountService.currentUser$ | async)===null">
+        <a mat-list-item routerLink="/login" routerLinkActive="active">Login</a>
+        <a mat-list-item routerLink="/register" routerLinkActive="active">Register</a>
+      </ng-container>
+
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a mat-list-item routerLink="/event-edit/0" routerLinkActive="active">Create new
+          event</a>
+        <a mat-list-item routerLink="/events" routerLinkActive="active">Events</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </ng-container>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div class="logo-container">
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>GroupUp</span>
+        <img class="logo" src="/assets/images/logo/logo_transparent.png">
+      </div>
+
+      <div class="nav-links-container">
+
+        <ng-container *ngIf="(accountService.currentUser$ | async)==null">
+          <a mat-list-item routerLink="/login" routerLinkActive="active"><u>*Login</u></a>
+          <a mat-list-item routerLink="/register" routerLinkActive="active"><u>*Register</u></a>
+        </ng-container>
+
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+          <a mat-list-item routerLink="/dashboard" routerLinkActive="active"><u>*Dashboard</u></a>
+          <a mat-list-item routerLink="/event-edit/0" routerLinkActive="active"><u>*Create new
+              event</u></a>
+          <a mat-list-item routerLink="/events" routerLinkActive="active"><u>*Events</u></a>
+          <a mat-list-item (click)="logout()"><u>*Logout</u></a>
+          <a id="profile-pic-container" routerLink="/upload-pic">
+            <img id="profile-img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.firstName}}">
+            <div id="add-profile-pic-text">Change Pic</div>
+          </a>
+        </ng-container>
+
+      </div>
+
+    </mat-toolbar>
+
+    <div id="ng-content">
+      <ng-content></ng-content>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,19 @@
+[ '{{repeat(20) }}',
+  {Name: '{{lorem(1, "sentence") }}',
+    SpotsAvailable: '{{integer(1,20) }}',
+    Description: '{{lorem(1,  "paragraphs") }}',
+    Location: {
+      Street:'{{integer(100,999)}} {{street() }}',
+      City: '{{city()}}',
+      State:'{{state(true) }}',
+      Country:'{{country() }}',
+      ZipCode:'{{integer(100, 10000)}}',
+      Longitude:'{{floating(-180.000001, 180)}}',
+      Latitude:'{{floating(-90.000001,90)}}' 
+    },
+    DateOfEvent: '{{date(new Date(2019,0, 1), new Date(2020, 5,30), "YYYY-MM-dd") }}',
+   StartTime: '{{integer(540,1440, "0:00")}}',
+   EndTime: '{{integer(540,1440, "0:00")}}',
+    CreatorEmail:'{{email([random]) }}'
+  }
+]

@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="members" multiTemplateDataRows class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let member"> {{member.firstName}} {{member.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DOB">
+        <th mat-header-cell *matHeaderCellDef> DOB </th>
+        <td mat-cell *matCellDef="let member"> {{member.dob | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="detail">
+        <th mat-header-cell *matHeaderCellDef> Detail </th>
+        <td mat-cell *matCellDef="let member">
+            <a routerLink='/member-detail/{{member.id}}'>Detail</a>
+        </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let member" [attr.colspan]="displayedColumns.length">
+            <div class="member-detail" [@detailExpand]="member == expandedMember ? 'expanded' : 'collapsed'">
+                <div class="member-description">
+                    {{member.photoUrl}}
+                </div>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let member; columns: displayedColumns;" class="member-row"
+        [class.expanded-row]="expandedMember === member"
+        (click)="expandedMember = expandedMember === member ? null : member">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>

@@ -1,0 +1,14 @@
+https://www.json-generator.com/
+
+[
+  '{{repeat(5)}}',
+  {
+    Email: '{{email()}}',
+    UserName: function(tags){return this.Email+'';},
+    Gender: 'male',
+    FirstName: '{{firstName("male")}}',
+    Password: 'Password1!',
+    LastName: '{{surname("male")}}',
+    DOB: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}'
+  }
+]

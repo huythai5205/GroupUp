@@ -1,0 +1,24 @@
+<div *ngIf="user" class="dashboard-container">
+  <h3>
+    Hi {{user.firstName}} {{user.lastName}}, welcome to your dashboard!
+  </h3>
+
+  <h3>
+    email: {{user.email}}
+  </h3>
+
+  <a routerLink='/user-edit' class="dropdown-item">Edit Profile</a> <br>
+  <a routerLink='/messages' class="dropdown-item">Messages</a>
+
+  <h3>
+    <strong>Created Events</strong>
+  </h3>
+  <GU-event-table [events]="user.eventsCreated" [editDetail]="'edit'"></GU-event-table>
+
+  <h3>
+    <strong>Participating Events</strong>
+  </h3>
+  <GU-event-table [events]="user.eventsParticipating" [editDetail]="'detail'"></GU-event-table>
+
+  <GU-upload-pic></GU-upload-pic>
+</div>
