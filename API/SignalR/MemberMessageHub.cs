@@ -5,7 +5,6 @@ using API.Models;
 using API.Extensions;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
-using API.Data;
 using API.DTOs;
 using API.Interfaces;
 
@@ -95,7 +94,7 @@ namespace API.SignalR
                 if (connections != null)
                 {
                     await _presenceHub.Clients.Clients(connections).SendAsync("NewMessageReceived",
-                        new { firstName = sender.FirstName, lastName = sender.LastName });
+                        new { memberId = sender.Id, firstName = sender.FirstName });
                 }
             }
 

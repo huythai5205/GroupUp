@@ -53,7 +53,7 @@ export class PresenceService {
       this.snackBar.open(firstName + ' has sent you a new message!', 'reply',)
         .onAction()
         .pipe(take(1))
-        .subscribe(() => this.router.navigateByUrl('/members-detail/' + memberId));
+        .subscribe(() => this.router.navigateByUrl('/member-detail/' + memberId));
     })
   }
 

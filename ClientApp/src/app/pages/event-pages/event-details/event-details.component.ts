@@ -42,7 +42,6 @@ export class EventDetailsComponent implements OnInit {
   loadEvent() {
     this.eventService.getEvent(this.route.snapshot.paramMap.get('eventId')).subscribe((event: Event) => {
       this.event = event;
-      console.log(this.event);
       this.isParticipating = this.checkEventIfParticipating();
     }
     );

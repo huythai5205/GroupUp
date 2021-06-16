@@ -25,9 +25,11 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private accountService: AccountService,
     private memberMessageService: MemberMessageService,
-    public presence: PresenceService
+    public presence: PresenceService,
+    private router: Router
   ) {
     this.loadUser();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
