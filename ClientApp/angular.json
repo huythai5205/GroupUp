@@ -122,7 +122,6 @@
       }
     }
   },
-  "defaultProject": "ClientApp",
   "cli": {
     "analytics": "65274411-948f-4263-bfeb-be5744dc68da"
   }

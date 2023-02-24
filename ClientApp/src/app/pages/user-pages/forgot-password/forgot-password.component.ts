@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, UntypedFormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,16 +11,16 @@ import { environment } from 'src/environments/environment';
 export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordApiUrl: string = '/api/v1/account/forgotPassword';
-  forgotPasswordForm: FormGroup;
-  Email: FormControl;
+  forgotPasswordForm: UntypedFormGroup;
+  Email: UntypedFormControl;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.Email = new FormControl('', [Validators.required, Validators.email]);
+    this.Email = new UntypedFormControl('', [Validators.required, Validators.email]);
 
     this.forgotPasswordForm = this.fb.group({
       Email: this.Email

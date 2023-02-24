@@ -4,7 +4,7 @@ import { Pagination } from 'src/app/shared/models';
 import { EventService } from '../../../shared/services';
 import { Event } from '../../../shared/models';
 import { EventParams } from 'src/app/shared/models/event-params';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -20,9 +20,9 @@ export class EventListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   userParams: EventParams;
 
-  locationSearchForm: FormGroup;
-  citySearchForm: FormGroup;
-  orderByForm: FormGroup;
+  locationSearchForm: UntypedFormGroup;
+  citySearchForm: UntypedFormGroup;
+  orderByForm: UntypedFormGroup;
 
   isGeolocationError: boolean = false;
 
@@ -35,7 +35,7 @@ export class EventListComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     this.userParams = this.eventService.getUserParams();
   }

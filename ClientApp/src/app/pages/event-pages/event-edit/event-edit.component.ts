@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AccountService, EventService } from '../../../shared/services';
 import { Event, Address, User } from '../../../shared/models';
 import { timeCheck } from '../../../shared/validations';
@@ -17,7 +17,7 @@ import { Location } from '@angular/common';
 
 export class EventEditComponent implements OnInit {
 
-  editEventForm: FormGroup;
+  editEventForm: UntypedFormGroup;
   event: Event;
   formErrorMessage: string = '';
   todayDate: Date = new Date();
@@ -27,7 +27,7 @@ export class EventEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private eventService: EventService,
     private accountService: AccountService,
     private route: ActivatedRoute

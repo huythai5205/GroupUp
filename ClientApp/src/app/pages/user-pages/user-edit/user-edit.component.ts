@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'GU-user-edit',
@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class UserEditComponent implements OnInit {
 
-  editForm: FormGroup;
+  editForm: UntypedFormGroup;
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AccountService } from 'src/app/shared/services';
 import { IsLoadingService } from 'src/app/shared/services/is-loading.service';
@@ -17,13 +17,13 @@ export class RegisterComponent implements OnInit {
 
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
   constructor(
     private router: Router,
     private accountService: AccountService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public isLoadingService: IsLoadingService
   ) { }
 
